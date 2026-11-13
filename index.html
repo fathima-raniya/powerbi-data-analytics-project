@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics | Power BI Project</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+
+        header {
+            background: #101c36;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: white;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #39c6a5;
+        }
+
+        nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #39c6a5;
+        }
+
+        /* Hero */
+
+        .hero {
+            background: linear-gradient(120deg, #101c36, #193d68);
+            color: white;
+            padding: 100px 7%;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .tag {
+            color: #39c6a5;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 54px);
+            line-height: 1.2;
+            margin: 20px 0;
+        }
+
+        .hero p {
+            color: #d1dbea;
+            font-size: 16px;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #39c6a5;
+            color: #10213a;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 7px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* General sections */
+
+        section {
+            padding: 75px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            color: #14233e;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Dashboard */
+
+        .dashboard-section {
+            background: white;
+        }
+
+        .dashboard-container {
+            max-width: 1250px;
+            margin: auto;
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 8px 35px rgba(15, 35, 65, 0.10);
+        }
+
+        .dashboard-frame {
+            position: relative;
+            width: 100%;
+            height: 750px;
+        }
+
+        .dashboard-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 7px;
+        }
+
+        .fullscreen-btn {
+            display: block;
+            margin: 20px auto 5px;
+            border: none;
+            background: #142b4c;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .fullscreen-btn:hover {
+            background: #39a98f;
+        }
+
+        /* About */
+
+        .about-content {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            color: #64748b;
+            margin-bottom: 18px;
+        }
+
+        /* Technology cards */
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 30px 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(15, 35, 65, 0.06);
+            transition: 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-card h3 {
+            color: #193d68;
+            margin-bottom: 8px;
+        }
+
+        .tech-card p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* Highlights */
+
+        .highlights {
+            background: #eaf0f7;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #39c6a5;
+        }
+
+        .highlight-card h3 {
+            color: #193d68;
+            margin-bottom: 10px;
+        }
+
+        .highlight-card p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Footer */
+
+        footer {
+            background: #101c36;
+            color: #d1dbea;
+            text-align: center;
+            padding: 30px 7%;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #39c6a5;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 70px 7%;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-frame {
+                height: 600px;
+            }
+
+            section {
+                padding: 55px 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-frame {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo">DATA<span>INSIGHTS</span></div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#about">About</a>
+            <a href="#technologies">Technologies</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+
+            <div class="tag">Power BI Data Analytics Project</div>
+
+            <h1>Transforming Data Into Meaningful Insights</h1>
+
+            <p>
+                Explore my Data Analytics project through an interactive
+                Power BI dashboard. Discover data patterns, analyze
+                performance, and understand meaningful insights through
+                data visualization.
+            </p>
+
+            <a href="#dashboard" class="btn">Explore Dashboard →</a>
+
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section" id="dashboard">
+
+        <div class="section-title">
+            <h2>Interactive Power BI Dashboard</h2>
+            <p>Explore the report below. Use filters and visual interactions
+               to analyze the data.</p>
+        </div>
+
+        <div class="dashboard-container">
+
+            <div class="dashboard-frame" id="dashboardFrame">
+
+                <iframe
+                    id="powerbiReport"
+                    title="Data Analytics Project Dashboard"
+                    src="https://app.powerbi.com/view?r=eyJrIjoiZmM1MTY1ZDMtN2JlYS00NWRkLTllOTAtYjNlOWU0ZTJmMGQwIiwidCI6IjQ0NjhjNzMzLTBhODMtNGMzMi1hY2ZkLWVkZmYzMTk4MjE2NiJ9"
+                    allowFullScreen="true">
+                </iframe>
+
+            </div>
+
+            <button class="fullscreen-btn" onclick="openFullscreen()">
+                View Fullscreen
+            </button>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+
+        <div class="section-title">
+            <h2>About The Project</h2>
+            <p>Understanding the purpose behind the analysis</p>
+        </div>
+
+        <div class="about-content">
+
+            <p>
+                This project demonstrates the use of Power BI to convert
+                raw data into meaningful visual insights. The dashboard
+                provides an interactive environment where users can
+                explore information, identify patterns, and analyze
+                important metrics.
+            </p>
+
+            <p>
+                Through data visualization and interactive reporting,
+                this project aims to make data easier to understand
+                and support better data-driven decisions.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Technologies -->
+    <section id="technologies" style="background:#ffffff;">
+
+        <div class="section-title">
+            <h2>Tools & Technologies</h2>
+            <p>Technologies used in the data analytics workflow</p>
+        </div>
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+                <h3>Power BI</h3>
+                <p>Interactive dashboards and data visualization</p>
+            </div>
+
+            <div class="tech-card">
+                <h3>Microsoft Excel</h3>
+                <p>Data preparation and analysis</p>
+            </div>
+
+            <div class="tech-card">
+                <h3>SQL</h3>
+                <p>Data querying and extraction</p>
+            </div>
+
+            <div class="tech-card">
+                <h3>Data Analytics</h3>
+                <p>Data exploration and insight generation</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Project Highlights -->
+    <section class="highlights">
+
+        <div class="section-title">
+            <h2>Project Highlights</h2>
+            <p>Key objectives of this project</p>
+        </div>
+
+        <div class="highlight-grid">
+
+            <div class="highlight-card">
+                <h3>Data Visualization</h3>
+                <p>
+                    Presenting complex information through clear
+                    and interactive visual representations.
+                </p>
+            </div>
+
+            <div class="highlight-card">
+                <h3>Interactive Analysis</h3>
+                <p>
+                    Exploring different data dimensions using
+                    dashboard filters and visual interactions.
+                </p>
+            </div>
+
+            <div class="highlight-card">
+                <h3>Data-Driven Insights</h3>
+                <p>
+                    Identifying trends and patterns to support
+                    informed decision-making.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> Data Analytics Project.
+           Designed with HTML, CSS and JavaScript.</p>
+    </footer>
+
+    <script>
+        // Fullscreen dashboard
+        function openFullscreen() {
+            const dashboard = document.getElementById("dashboardFrame");
+
+            if (dashboard.requestFullscreen) {
+                dashboard.requestFullscreen();
+            } else if (dashboard.webkitRequestFullscreen) {
+                dashboard.webkitRequestFullscreen();
+            }
+        }
+
+        // Automatic year
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
